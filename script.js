@@ -1,4 +1,5 @@
 let displayValue = "Start typing";
+let calculationValue = [];
 const display = document.querySelector("#display");
 display.textContent = displayValue;
 
@@ -7,6 +8,7 @@ const buttons = document.querySelectorAll(".buttons div p");
 buttons.forEach((button) => {
     button.addEventListener('click', () => {
         updateDisplay(button.textContent);
+        calculationValue.push(button.textContent);
     });
   });
 
@@ -23,6 +25,7 @@ function operate(a, b, operand) {
 }
 
 //updates the display, need to add clear logic
+// also needs to respect numbers higher than 10 .-.
 function updateDisplay(content) {
     displayValue = content;
     display.textContent = displayValue;
