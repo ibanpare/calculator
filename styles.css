@@ -22,10 +22,16 @@ body {
 }
 
 #screen {
-    flex: 0 0 280px;
+    flex: 0 0 260px;
     height: 130px;
     margin-top: 10px;
     border: 1px solid black;
+    display: flex;
+    justify-content: right;
+    align-items: flex-end;
+    padding: 10px;
+    font-size: 36px;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 #buttons {
