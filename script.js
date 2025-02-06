@@ -2,7 +2,7 @@ let firstNumber = "";
 let operator = "";
 let secondNumber = "";
 const screen = document.querySelector("#screen");
-const digits = document.querySelectorAll(".digit");
+const buttons = document.querySelectorAll(".button");
 
 function add(a, b) {
     return a + b;
@@ -21,6 +21,8 @@ function divide(a, b) {
 }
 
 function operate(a, b, operator) {
+    a = parseFloat(a);
+    b = parseFloat(b);
     switch(operator) {
         case "+":
             return add(a, b);
@@ -34,41 +36,61 @@ function operate(a, b, operator) {
 }
 
 function updateScreen(content) {
-    if(screen.textContent.includes(".") && (content == ".")) {
-        screen.textContent = screen.textContent;
-    } else if(content == "") {screen.textContent = ""}
-    else
-    {screen.textContent += content;}
+  if (screen.innerText.includes(".") && content == ".") {
+    screen.innerText = screen.innerText;
+  } else if (content == "") {
+    screen.innerText = "";
+  } else if (content == "+/-") {
+    if (screen.innerText[0] == "-")
+      screen.innerText = screen.innerText.slice(1);
+    else screen.innerText = `-${screen.innerText}`;
+  } else {
+    screen.innerText += content;
+  }
 }
 
-function recordClickedDigits() {
-    digits.forEach((button) => {
-        button.addEventListener("click", (e) => updateScreen(e.target.textContent))
-    })
+function storeOperator(clickedOperator) {
+  operator = clickedOperator;
+  firstNumber = screen.innerText;
+  updateScreen("");
 }
 
-recordClickedDigits();
+function runCalculator() {
+  buttons.forEach((button) => {
+    button.addEventListener("click", (e) => {
+      if (e.target.innerText == "+") storeOperator("+");
+      else if (e.target.innerText == "-") storeOperator("-");
+      else if (e.target.innerText == "/") storeOperator("/");
+      else if (e.target.innerText == "X") storeOperator("X");
+      else if (e.target.innerText == "AC") updateScreen("");
+      else if (e.target.innerText == "%") {
+        let newNumber = parseFloat(screen.innerText) / 100;
+        updateScreen("");
+        updateScreen(newNumber);
+      } else if (e.target.innerText == "+/-") updateScreen("+/-");
+      else if (e.target.innerText == "=") {
+        if (firstNumber == "") return;
+        else {
+          secondNumber = screen.innerText;
+          updateScreen("");
+          updateScreen(operate(firstNumber, secondNumber, operator));
+          firstNumber = "";
+          secondNumber = "";
+          operator = "";
+        }
+      } else {
+        updateScreen(e.target.innerText);
+      }
+    });
+  });
+}
+
+runCalculator();
 
 /* 
-Make the calculator work! You’ll need to store the first and second numbers input by the user and then operate() on them when the user presses the = button, according to the operator that was selected between the numbers.
 
-You should already have the code that can populate the display, so once operate has been called, update the display with the result of the operation.
-
-This is the hardest part of the project. You need to figure out how to store all the values and call the operate function with them. Don’t feel bad if it takes you a while to figure out the logic.
+MANCA COMPORTAMENTO DA ATTUARE DOPO IL RISULTATO
+MANCA COMPORTAMENTO PER OPERAZIONI DOPO LA PRIMA
 
 
-SE CLICCHI UNO TRA +, -, ecc
-CONSERVA I CONTENUTI DELLO SCHERMO IN VARIABILE FIRST NUMBER
-CONSERVA +, -, ecc IN OPERATOR
-PULISCI SCHERMO
-CONTINUA A REGISTRARE DIGITS E RIEMPIRE SCHERMO
-FINCHE CLICCHI =
-LI SALVA SCHERMO IN SECOND NUMBER
-PULISCI SCHERMO
-CHIAMA FUNZIONE IN BASE A OPERATOR
-RIEMPI SCHERMO CON RISULTATO
-
-
-BISOGNA FARE REFACTOR DI RECORD CLICKED DIGITS e FARLO SU TUTTI I BOTTONI, CON VARI CASI
-AGGIORNANDO VARIABIL
 */
