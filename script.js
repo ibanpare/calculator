@@ -36,7 +36,8 @@ function operate(a, b, operator) {
 function updateScreen(content) {
     if(screen.textContent.includes(".") && (content == ".")) {
         screen.textContent = screen.textContent;
-    } else
+    } else if(content == "") {screen.textContent = ""}
+    else
     {screen.textContent += content;}
 }
 
