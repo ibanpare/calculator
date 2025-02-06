@@ -36,7 +36,8 @@ function operate(a, b, operator) {
 function recordClickedDigits() {
     digits.forEach((button) => {
         button.addEventListener("click", (e) => {
-            screen.textContent += e.target.textContent;
+            if(screen.textContent.includes(".") && (e.target.textContent == ".")) {screen.textContent = screen.textContent} else {
+            screen.textContent += e.target.textContent;}
         })
     })
 }
