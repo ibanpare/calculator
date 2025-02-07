@@ -24,6 +24,7 @@ function divide(a, b) {
 function operate(a, b, operator) {
   a = parseFloat(a);
   b = parseFloat(b);
+  if(b == 0) return "Someone's a smart-ass";
   switch (operator) {
     case "+":
       return roundNumber(add(a, b));
