@@ -19,6 +19,8 @@ body {
     flex-wrap: wrap;
     border: 1px solid black;
     justify-content: center;
+    background-color: #0D0D0D;
+    border-radius: 20px;
 }
 
 #screen {
@@ -31,7 +33,9 @@ body {
     align-items: flex-end;
     padding: 10px;
     font-size: 36px;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: 'Orbitron', sans-serif;
+    background-color: white;
+    border-radius: 20px;
 }
 
 #buttons {
@@ -49,6 +53,22 @@ body {
     width: 60px;
     height: 60px;
     border-radius: 20px;
+}
+
+.digit {
+    background-color: #00D9FF;
+}
+
+.operator {
+    background-color: #FF00FF;
+}
+
+.utility {
+    background-color: #F9FF00;
+}
+
+.other {
+    background-color: #39FF14;
 }
 
 .button#equal {
