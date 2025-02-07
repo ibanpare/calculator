@@ -5,39 +5,39 @@ const screen = document.querySelector("#screen");
 const buttons = document.querySelectorAll(".button");
 
 function add(a, b) {
-    return a + b;
+  return a + b;
 }
 
 function subtract(a, b) {
-    return a - b;
+  return a - b;
 }
 
 function multiply(a, b) {
-    return a * b;
+  return a * b;
 }
 
 function divide(a, b) {
-    return a / b;
+  return a / b;
 }
 
 function operate(a, b, operator) {
-    a = parseFloat(a);
-    b = parseFloat(b);
-    switch(operator) {
-        case "+":
-            return roundNumber(add(a, b));
-        case "-":
-            return roundNumber(subtract(a, b));
-        case "X":
-            return roundNumber(multiply(a, b));
-        case "/":
-            return roundNumber(divide(a, b));
-    }
+  a = parseFloat(a);
+  b = parseFloat(b);
+  switch (operator) {
+    case "+":
+      return roundNumber(add(a, b));
+    case "-":
+      return roundNumber(subtract(a, b));
+    case "X":
+      return roundNumber(multiply(a, b));
+    case "/":
+      return roundNumber(divide(a, b));
+  }
 }
 
 function roundNumber(number) {
-    if(!Number.isInteger(number)) return number.toFixed(4);
-    else return number;
+  if (!Number.isInteger(number)) return number.toFixed(4);
+  else return number;
 }
 
 function updateScreen(content) {
@@ -53,7 +53,7 @@ function updateScreen(content) {
 }
 
 function cleanScreen() {
-    screen.innerText = "";
+  screen.innerText = "";
 }
 
 function storeOperator(clickedOperator) {
@@ -76,7 +76,7 @@ function runCalculator() {
         updateScreen(newNumber);
       } else if (e.target.innerText == "+/-") updateScreen("+/-");
       else if (e.target.innerText == "=") {
-        if (firstNumber == "") return;
+        if (firstNumber == "" || operator == "" || screen.innerText == "") return;
         else {
           secondNumber = screen.innerText;
           cleanScreen();
@@ -87,20 +87,14 @@ function runCalculator() {
         }
       } else {
         if (firstNumber) {
-          if(firstNumber == screen.innerText) cleanScreen();
+          if (firstNumber == screen.innerText) cleanScreen();
           updateScreen(e.target.innerText);
         } else {
           updateScreen(e.target.innerText);
         }
-      } 
+      }
     });
   });
 }
 
 runCalculator();
-
-/* 
-
-MANCA COMPORTAMENTO DA ATTUARE DOPO IL RISULTATO, C'è solo il problema della digit che si accoda al risultato.
-
-*/
