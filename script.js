@@ -71,18 +71,23 @@ function runCalculator() {
       else if (e.target.innerText == "/") storeOperator("/");
       else if (e.target.innerText == "X") storeOperator("X");
       else if (e.target.innerText == "AC") {
-            cleanScreen();
-            firstNumber = "";
-            secondNumber = "";
-            operator = "";
-      }
-      else if (e.target.innerText == "%") {
+        cleanScreen();
+        firstNumber = "";
+        secondNumber = "";
+        operator = "";
+      } else if (e.target.innerText == "⌫") {
+        screen.innerText = screen.innerText.slice(
+          0,
+          screen.innerText.length - 1
+        );
+      } else if (e.target.innerText == "%") {
         let newNumber = parseFloat(screen.innerText) / 100;
         cleanScreen();
         updateScreen(newNumber);
       } else if (e.target.innerText == "+/-") updateScreen("+/-");
       else if (e.target.innerText == "=") {
-        if (firstNumber == "" || operator == "" || screen.innerText == "") return;
+        if (firstNumber == "" || operator == "" || screen.innerText == "")
+          return;
         else {
           secondNumber = screen.innerText;
           cleanScreen();
