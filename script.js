@@ -25,14 +25,19 @@ function operate(a, b, operator) {
     b = parseFloat(b);
     switch(operator) {
         case "+":
-            return add(a, b);
+            return roundNumber(add(a, b));
         case "-":
-            return subtract(a, b);
+            return roundNumber(subtract(a, b));
         case "X":
-            return multiply(a, b);
+            return roundNumber(multiply(a, b));
         case "/":
-            return divide(a, b);
+            return roundNumber(divide(a, b));
     }
+}
+
+function roundNumber(number) {
+    if(!Number.isInteger(number)) return number.toFixed(4);
+    else return number;
 }
 
 function updateScreen(content) {
