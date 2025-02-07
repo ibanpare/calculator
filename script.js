@@ -76,13 +76,18 @@ function runCalculator() {
           secondNumber = screen.innerText;
           cleanScreen();
           updateScreen(operate(firstNumber, secondNumber, operator));
-          firstNumber = "";
+          firstNumber = screen.innerText;
           secondNumber = "";
           operator = "";
         }
       } else {
-        updateScreen(e.target.innerText);
-      }
+        if (firstNumber) {
+          if(firstNumber == screen.innerText) cleanScreen();
+          updateScreen(e.target.innerText);
+        } else {
+          updateScreen(e.target.innerText);
+        }
+      } 
     });
   });
 }
