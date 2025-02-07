@@ -59,6 +59,7 @@ function cleanScreen() {
 }
 
 function storeOperator(clickedOperator) {
+    if(operator) return;
   operator = clickedOperator;
   firstNumber = screen.innerText;
   cleanScreen();
