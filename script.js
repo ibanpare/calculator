@@ -3,6 +3,7 @@ let operator = "";
 let secondNumber = "";
 const screen = document.querySelector("#screen");
 const buttons = document.querySelectorAll(".button");
+const clearButton = document.querySelector("#clear");
 
 function add(a, b) {
   return a + b;
@@ -69,7 +70,12 @@ function runCalculator() {
       else if (e.target.innerText == "-") storeOperator("-");
       else if (e.target.innerText == "/") storeOperator("/");
       else if (e.target.innerText == "X") storeOperator("X");
-      else if (e.target.innerText == "AC") cleanScreen();
+      else if (e.target.innerText == "AC") {
+            cleanScreen();
+            firstNumber = "";
+            secondNumber = "";
+            operator = "";
+      }
       else if (e.target.innerText == "%") {
         let newNumber = parseFloat(screen.innerText) / 100;
         cleanScreen();
